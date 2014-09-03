@@ -18,10 +18,10 @@ io.on('connection', function (socket) {
     console.log(messageToCollector);
     client.publish('source_sub', messageToCollector);
     socket.emit('front-request', {clientId: message.clientId, serverId: serverId});
-    setInterval(function() {
-      dataMap[serverId].aggregation.positive++;
-      dataMap[serverId].aggregation.neutral+=2;
-      dataMap[serverId].aggregation.negative+=3;
+    setInterval(function () {
+      dataMap[serverId].aggregation.positive += Math.round(Math.random() * 10);
+      dataMap[serverId].aggregation.neutral += Math.round(Math.random() * 10);
+      dataMap[serverId].aggregation.negative += Math.round(Math.random() * 10);
       socket.emit('front-response', dataMap[serverId].aggregation);
     }, 3000);
 
